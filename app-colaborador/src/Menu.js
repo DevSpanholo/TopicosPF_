@@ -17,12 +17,12 @@ function Menu() {
             },
             {
                 label: 'Colaboradores', icon: 'pi pi-fw pi-user',
-                command: () => { navigate("/colaborador") }
+                command: () => { navigate("/colaboradores") }
             },
             
             {
                 label: 'Solicitante', icon: 'pi pi-fw pi-user',
-                command: () => { navigate("/solicitante") }
+                command: () => { navigate("/solicitantes") }
             },
             {
                 label: 'Requisicao', icon: 'pi pi-fw pi-user',

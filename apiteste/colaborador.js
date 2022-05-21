@@ -1,7 +1,7 @@
 module.exports = (app) => {
     const ObjectId = require('mongodb').ObjectId;
     //rota para listar animais
-   app.get('/colaborador', (req, res) => {
+   app.get('/colaboradores', (req, res) => {
     db.collection('colaborador').find().toArray((err, results)=>{
     if (err) throw err;
     res.json(results);
@@ -9,7 +9,7 @@ module.exports = (app) => {
    });
 
     ///rota pra inclusao de animal 
-   app.post('/colaborador', (req, res, next) => {
+   app.post('/colaboradores', (req, res, next) => {
     db.collection('colaborador').insertOne(req.body, (err, result) => {
     if (err) throw err;
     res.json({success: "Incluído com sucesso."});
@@ -17,7 +17,7 @@ module.exports = (app) => {
    });
   
    //atualizando 
-   app.put('/colaborador', (req, res) => {
+   app.put('/colaboradores', (req, res) => {
     var id = ObjectId(req.body._id);
     var newvalues = {$set:{
     nome: req.body.nome,
@@ -35,7 +35,7 @@ module.exports = (app) => {
     })
    });
 
-   app.delete('/colaborador/:id', (req, res) => {
+   app.delete('/colaboradores/:id', (req, res) => {
     var id = ObjectId(req.params.id);
     db.collection('colaborador').deleteOne({_id: id}, (err, result)=>{
     if (err) throw err;
@@ -46,7 +46,7 @@ module.exports = (app) => {
    });
 
 
-   app.get('/colaborador/:id', (req, res) => {
+   app.get('/colaboradores/:id', (req, res) => {
     var id = ObjectId(req.params.id);
     db.collection('colaborador').findOne({_id: id}, (err, result)=>{
     if (err) throw err;
@@ -54,7 +54,7 @@ module.exports = (app) => {
     });
    });
 
-   app.get('/colaborador/filtro/:valor' , (req, res) => {
+   app.get('/colaboradores/filtro/:valor' , (req, res) => {
     db.collection('colaborador').find({
     $or: [
     { nome: { $regex: req.params.valor, $options: "i" } },

@@ -29,5 +29,5 @@ animais(app);
 
 
 // rotas para animais
-const colaborador = require('./colaborador');
+const colaborador = require('./colaboradores');
 colaborador(app);

@@ -6,6 +6,13 @@ import Menu from "./Menu";
 const Home = lazy(() => import("./pages/home/Home"));
 const ColaboradorCon = lazy(() => import("./pages/colaborador/ColaboradorCon"));
 
+const RequisicaoCon = lazy(() => import("./pages/requisicao/RequisicaoCon"));
+
+const SolicitanteCon = lazy(() => import("./pages/solicitante/SolicitanteCon"));
+const TipoRequisicaoCon = lazy(() =>
+  import("./pages/tipoRequisicao/TipoRequisicaoCon")
+);
+
 function App() {
   return (
     <BrowserRouter>
@@ -13,7 +20,10 @@ function App() {
       <Suspense fallback={<div>Carregando ... </div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/colaborador" element={<ColaboradorCon />} />
+          <Route path="/colaboradores" element={<ColaboradorCon />} />
+          <Route path="/requisicao" element={<RequisicaoCon />} />
+          <Route path="/tipoRequisicao" element={<TipoRequisicaoCon />} />
+          <Route path="/solicitantes" element={<SolicitanteCon />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

@@ -1,23 +1,16 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { Button } from 'primereact/button';
 
 
 const ColaboradorList = (props) => {
   const operacoesBodyTemplate = (rowData) => {
     return (
       <>
-        <button icon="pi pi-check" iconPos="right"
-          onClick={() => props.editar(rowData._id)}
-          className="btn btn-warning btn-sm"
-        >
-          Editar
-        </button>
-        <button
-          onClick={() => props.excluir(rowData._id)}
-          className="btn btn-danger btn-sm"
-        >
-          Excluir
-        </button>
+        <Button label="Editar" onClick={() => props.editar(rowData._id)} className="p-button-warning"/>
+        
+        <Button label="Excluir" onClick={() => props.excluir(rowData._id)} className="p-button-danger"/>
+
       </>
     );
   };
