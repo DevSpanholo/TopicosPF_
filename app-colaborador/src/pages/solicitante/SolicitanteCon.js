@@ -9,6 +9,7 @@ import "primeicons/primeicons.css";
 import { Toast } from "primereact/toast";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 
+
 function SolicitanteCon() {
   const [solicitantes, setSolicitantes] = useState([]);
   const initialState = { id: null, nome: "", email: "", senha: "" };
@@ -21,8 +22,7 @@ function SolicitanteCon() {
   }, []);
 
   const onClickAtualizar = () => {
-    SolicitanteSrv.listar()
-      .then((response) => {
+    SolicitanteSrv.listar().then((response) => {
         setSolicitantes(response.data);
         toastRef.current.show({
           severity: "success",
@@ -46,8 +46,7 @@ function SolicitanteCon() {
   };
 
   const salvar = () => {
-    if (solicitante._id == null) {
-      // inclusão
+    if (solicitante._id == null) { // inclusão
       SolicitanteSrv.incluir(solicitante)
         .then((response) => {
           setEditando(false);
@@ -65,8 +64,7 @@ function SolicitanteCon() {
             life: 4000,
           });
         });
-    } else {
-      // alteração
+    } else { // alteração
       SolicitanteSrv.alterar(solicitante)
         .then((response) => {
           setEditando(false);
@@ -93,7 +91,7 @@ function SolicitanteCon() {
 
   const editar = (id) => {
     setSolicitante(
-      solicitantes.filter((solicitante) => solicitante._id === id)[0]
+      solicitantes.filter((solicitante) => solicitante._id == id)[0]
     );
     setEditando(true);
   };
@@ -129,6 +127,7 @@ function SolicitanteCon() {
       });
   };
 
+
   if (!editando) {
     return (
       <div>
@@ -158,5 +157,6 @@ function SolicitanteCon() {
       </div>
     );
   }
+
 }
 export default SolicitanteCon;

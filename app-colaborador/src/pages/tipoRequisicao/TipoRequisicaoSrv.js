@@ -1,5 +1,5 @@
 import axios from "../../services/axios-common";
-class tipoRequisicaoSrv {
+class TipoRequisicaoSrv {
   url = "/tipoRequisicoes";
   async listar() {
     return await axios.get(this.url).catch((err) => {
@@ -32,4 +32,4 @@ class tipoRequisicaoSrv {
     });
   }
 }
-export default new tipoRequisicaoSrv();
+export default new TipoRequisicaoSrv();

@@ -38,19 +38,12 @@ const RequisicaoList = (props) => {
         onSelectionChange={e => props.setRequisicao(e.value)} dataKey="_id">
 
         <Column field="_id" header="ID" sortable></Column>
-        
-        <Column field="titulo" header="Titulo" sortable filter></Column>
+        <Column field="titulo" header="Título" sortable filter></Column>
         <Column field="descricao" header="Descrição" sortable filter></Column>
-        
-        <Column field="dataHoraCriada" header="Data e Hora" sortable filter></Column>
-        
+        <Column field="dataHoraCriada" header="Data e Hora Criada" sortable filter></Column>
         <Column field="status" header="Status" sortable filter></Column>
-
-        
         <Column field="prazoAtendimento" header="Prazo de Atendimento" sortable filter></Column>
-
         <Column header="Operações" body={operacoesBodyTemplate}>
-        
         </Column>
       </DataTable>
     </div>

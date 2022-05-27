@@ -3,8 +3,12 @@ import React, { useState, useEffect, useRef } from "react";
 import TipoRequisicaoList from "./TipoRequisicaoList";
 import TipoRequisicaoForm from "./TipoRequisicaoForm";
 import TipoRequisicaoSrv from "./TipoRequisicaoSrv";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 import { Toast } from "primereact/toast";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+
 
 function TipoRequisicaoCon() {
   const [tipoRequisicoes, setTipoRequisicoes] = useState([]);
@@ -19,10 +23,10 @@ function TipoRequisicaoCon() {
 
   const onClickAtualizar = () => {
     TipoRequisicaoSrv.listar().then((response) => {
-      setTipoRequisicoes(response.data);
+        setTipoRequisicoes(response.data);
         toastRef.current.show({
           severity: "success",
-          summary: "Tipo Requisição Atualizados!",
+          summary: "Tipo de Requisições Atualizadas!",
           life: 3000,
         });
       })
@@ -85,11 +89,14 @@ function TipoRequisicaoCon() {
     setEditando(false);
   };
 
-  const editar = () => {
+  const editar = (id) => {
+    setTipoRequisicao(
+      tipoRequisicoes.filter((tipoRequisicao) => tipoRequisicao._id == id)[0]
+    );
     setEditando(true);
   };
 
-  const excluir = () => {
+  const excluir = (_id) => {
     confirmDialog({
       message: "Confirma a exclusão?",
       header: "Confirmação",
@@ -97,12 +104,12 @@ function TipoRequisicaoCon() {
       acceptLabel: "Sim",
       rejectLabel: "Não",
       acceptClassName: "p-button-danger",
-      accept: () => excluirConfirm(),
+      accept: () => excluirConfirm(_id),
     });
   };
 
-  const excluirConfirm = () => {
-    TipoRequisicaoSrv.excluir(tipoRequisicao._id)
+  const excluirConfirm = (_id) => {
+    TipoRequisicaoSrv.excluir(_id)
       .then((response) => {
         onClickAtualizar();
         toastRef.current.show({

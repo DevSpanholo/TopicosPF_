@@ -10,7 +10,6 @@ import { Toast } from "primereact/toast";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 
 
-
 function ColaboradorCon() {
   const [colaboradores, setColaboradores] = useState([]);
   const initialState = { id: null, nome: "", email: "", senha: "" };
