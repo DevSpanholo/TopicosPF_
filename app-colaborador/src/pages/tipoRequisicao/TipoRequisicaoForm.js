@@ -1,52 +1,72 @@
 import React from "react";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import { useForm } from "react-hook-form";
 
 const TipoRequisicaoForm = (props) => {
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    props.setTipoRequisicao({ ...props.tipoRequisicao, [name]: value });
+    const { id, value } = event.target;
+    props.setTipoRequisicao({ ...props.tipoRequisicao, [id]: value });
   };
-  return (
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    //Validar senha e contra senha
+    props.salvar();
+  };
 
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div>
-            <form>
-              <div class="form">
-                <div class="form-toggle"></div>
-                <div class="form-panel one">
-                  <div class="form-header">
-                    <h1>Cadastro de Tipos de Requisição</h1>
-                  </div>
-                  <div class="form-content">
-                    <form>
-                      <div class="form-group">
-                        <label>Descrição</label>
-                        <input
-                          class="form-control"
-                          type="text"
-                          name="descricao"
-                          value={props.tipoRequisicao.descricao}
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div class="form-group">
-                        <button type="button" onClick={props.salvar}
-                          className="btn btn-primary btn-sm">Salvar</button>
-                        <button type="button" onClick={props.cancelar}
-                          className="btn btn-danger btn-sm">Cancelar</button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </form>
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <div className="card">
+          <h5>Cadastro de Requisições</h5>
+          <div className="p-fluid grid formgrid">
+            <div className="field col-12 md:col-4">
+              <label htmlFor="descricao">Descrição</label>
+              <InputText
+                id="descricao"
+                defaultValue={props.tipoRequisicao.descricao}
+                {...register("descricao", {
+                  required: {
+                    value: true,
+                    message: "o Campo descrição é obrigatório!",
+                  },
+                  minLength: {
+                    value: 14,
+                    message: "Descrição deve ter pelo menos 14 caracteres",
+                  },
+                  maxLength: {
+                    value: 90,
+                    message: "Descrição não deve passar de 90 caracteres",
+                  },
+                })}
+                onChange={handleInputChange}
+              />
+              {errors.descricao && (
+                <span style={{ color: "red" }}>{errors.descricao.message}</span>
+              )}
+            </div>
           </div>
         </div>
+        <div>
+          <Button
+            label="Salvar"
+            icon="pi pi-save"
+            type="submit"
+            className="p-button-text"
+          />
+          <Button
+            label="Cancelar"
+            icon="pi pi-times-circle"
+            onClick={props.cancelar}
+            className="p-button-text"
+          />
+        </div>
       </div>
-    </div>
-
-
+    </form>
   );
 };
 export default TipoRequisicaoForm;

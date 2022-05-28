@@ -17,7 +17,7 @@ function Menu() {
             },
             {
                 label: 'Colaboradores', icon: 'pi pi-fw pi-user',
-                command: () => { navigate("/colaboradores") }
+                command: () => { navigate("/colaborador") }
             },
             
             {

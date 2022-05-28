@@ -1,32 +1,28 @@
 import "./App.css";
+import Menu from './Menu';
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-import Menu from "./Menu";
-const Home = lazy(() => import("./pages/home/Home"));
-const ColaboradorCon = lazy(() => import("./pages/colaborador/ColaboradorCon"));
 
-const RequisicaoCon = lazy(() => import("./pages/requisicao/RequisicaoCon"));
-
-const SolicitanteCon = lazy(() => import("./pages/solicitante/SolicitanteCon"));
-const TipoRequisicaoCon = lazy(() =>
-  import("./pages/tipoRequisicao/TipoRequisicaoCon")
-);
+const Home = lazy(() => import('./pages/home/Home'));
+const ColaboradorCon = lazy(() => import('./pages/colaborador/ColaboradorCon'));
+const SolicitanteCon = lazy(() => import('./pages/solicitante/SolicitanteCon'));
+const TipoRequisicaoCon = lazy(() => import('./pages/tiporequisicao/TipoRequisicaoCon'));
+const RequisicaoCon = lazy(() => import('./pages/requisicao/RequisicaoCon'));
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter >
       <Menu />
       <Suspense fallback={<div>Carregando ... </div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/colaboradores" element={<ColaboradorCon />} />
+          <Route path="/colaborador" element={<ColaboradorCon />} />
+          <Route path="/solicitante" element={<SolicitanteCon />} />
           <Route path="/requisicao" element={<RequisicaoCon />} />
-          <Route path="/tipoRequisicao" element={<TipoRequisicaoCon />} />
-          <Route path="/solicitantes" element={<SolicitanteCon />} />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 export default App;
