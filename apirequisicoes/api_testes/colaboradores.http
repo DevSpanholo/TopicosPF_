@@ -1,5 +1,15 @@
 @apiUrl = http://localhost:3000/api
 //{{apiUrl}}
+@apiUrl = http://localhost:3000/api
+
+# Autenticação de usuário
+POST {{apiUrl}}/login
+Content-Type: application/json
+{
+ "email": "jaqson@upf.br",
+ "senha": "123"
+}
+###
 
 # Obter a lista de colaboradores
 GET {{apiUrl}}/colaboradores
@@ -13,7 +23,7 @@ Content-Type: application/json
 {
  "nome": "Otávio Colaborador", 
  "email": "otaviocolaborador@upf.br",
- "senha": "123"
+ "senha": "12s3"
 }
 ###
 

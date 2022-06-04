@@ -5,6 +5,9 @@ const express = require("express");
 const app = express();
 app.use(express.json()); // para tratar json
 
+//Config dotenv
+require('dotenv').config(); 
+
 // definir porta para a API de serviço
 const port = process.env.PORT || 3000;
 
